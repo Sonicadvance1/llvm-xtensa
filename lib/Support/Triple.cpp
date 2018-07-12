@@ -71,6 +71,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case wasm64:         return "wasm64";
   case renderscript32: return "renderscript32";
   case renderscript64: return "renderscript64";
+  case xtensa:         return "xtensa";
   }
 
   llvm_unreachable("Invalid ArchType!");
@@ -96,6 +97,8 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
   case ppc64:
   case ppc64le:
   case ppc:         return "ppc";
+
+  case xtensa:         return "xtensa";
 
   case mips:
   case mipsel:
@@ -266,6 +269,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
     .Case("armeb", armeb)
     .Case("avr", avr)
     .StartsWith("bpf", BPFArch)
+    .Case("xtensa", xtensa)
     .Case("mips", mips)
     .Case("mipsel", mipsel)
     .Case("mips64", mips64)
@@ -397,6 +401,7 @@ static Triple::ArchType parseArch(StringRef ArchName) {
     .Case("thumb", Triple::thumb)
     .Case("thumbeb", Triple::thumbeb)
     .Case("avr", Triple::avr)
+    .Case("xtensa", Triple::xtensa)
     .Case("msp430", Triple::msp430)
     .Cases("mips", "mipseb", "mipsallegrex", Triple::mips)
     .Cases("mipsel", "mipsallegrexel", Triple::mipsel)
@@ -671,6 +676,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::tcele:
   case Triple::thumbeb:
   case Triple::xcore:
+  case Triple::xtensa:
     return Triple::ELF;
 
   case Triple::ppc:
@@ -1215,6 +1221,7 @@ static unsigned getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
   case llvm::Triple::shave:
   case llvm::Triple::wasm32:
   case llvm::Triple::renderscript32:
+  case llvm::Triple::xtensa:
     return 32;
 
   case llvm::Triple::aarch64:
@@ -1296,6 +1303,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::shave:
   case Triple::wasm32:
   case Triple::renderscript32:
+  case Triple::xtensa:
     // Already 32-bit.
     break;
 
@@ -1335,6 +1343,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::xcore:
   case Triple::sparcel:
   case Triple::shave:
+  case Triple::xtensa:
     T.setArch(UnknownArch);
     break;
 

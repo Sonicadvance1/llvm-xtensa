@@ -139,6 +139,13 @@ StringRef llvm::object::getELFRelocationTypeName(uint32_t Machine,
       break;
     }
     break;
+  case ELF::EM_LX6:
+    switch (Type) {
+#include "llvm/BinaryFormat/ELFRelocs/LX6.def"
+    default:
+      break;
+    }
+    break;
   default:
     break;
   }

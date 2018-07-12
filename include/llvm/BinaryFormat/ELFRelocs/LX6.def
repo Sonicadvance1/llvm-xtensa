@@ -1,0 +1,7 @@
+#ifndef ELF_RELOC
+#error "ELF_RELOC must be defined"
+#endif
+
+ELF_RELOC(R_XTENSA_NONE,   0)
+ELF_RELOC(R_XTENSA_JUMP18, 1)
+ELF_RELOC(R_XTENSA_CBRANCH12, 2)

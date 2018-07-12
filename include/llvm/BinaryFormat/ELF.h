@@ -312,6 +312,10 @@ enum {
   EM_RISCV = 243,         // RISC-V
   EM_LANAI = 244,         // Lanai 32-bit processor
   EM_BPF = 247,           // Linux kernel bpf virtual machine
+
+  // Not a real registered machine
+  EM_LX6 = 0x4248,        // LX6 architecture
+
 };
 
 // Object file classes.
@@ -721,6 +725,11 @@ enum {
 // ELF Relocation types for BPF
 enum {
 #include "ELFRelocs/BPF.def"
+};
+
+// ELF Relocation types for LX6
+enum {
+#include "ELFRelocs/LX6.def"
 };
 
 #undef ELF_RELOC
